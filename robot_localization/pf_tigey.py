@@ -182,9 +182,18 @@ class ParticleFilter(Node):
         # first make sure that the particle weights are normalized
         self.normalize_particles()
 
+
+        max_weight = 0
+        best_particle = None
+        for particle in self.particle_cloud:
+            if particle.w > max_weight:
+                best_particle = particle
+        
+        self.robot_pose = best_particle.as_pose()
+
         # TODO: (Tigey) assign the latest pose into self.robot_pose as a geometry_msgs.Pose object
         # just to get started we will fix the robot's pose to always be at the origin
-        self.robot_pose = Pose()
+        # self.robot_pose = Pose()
 
         self.transform_helper.fix_map_to_odom_transform(self.robot_pose,
                                                         self.odom_pose)
@@ -225,6 +234,28 @@ class ParticleFilter(Node):
             r: the distance readings to obstacles
             theta: the angle relative to the robot frame for each corresponding reading 
         """
+
+        # For each particle, take posx, posy, theta
+        # For each laser in 0-360 take phi, r
+        # Convert laser to map frame with 
+            # x = posx + r*cos(phi + theta)
+            # y = posy + r*sin(phi + theta)
+            # [dist] add Occupancy(x, y)
+        # ignore some # outliers in [dist]
+        # give weight
+
+        if self.scan_to_process == None:
+            pass
+
+        for particle in self.particle_cloud:
+            dist = []
+            for idx, point in enumerate(self.scan_to_process.ranges):
+                x = particle.x + point*math.cos(idx + particle.theta)
+                y = particle.y + point*math.sin(idx + particle.theta)
+                dist.append(self.occupancy_field.get_closest_obstacle_distance(x, y))
+            particle.w = 1 / np.mean(dist)
+
+
         # TODO: (Tigey) implement this
         pass
 
