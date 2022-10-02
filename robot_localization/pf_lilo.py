@@ -210,6 +210,12 @@ class ParticleFilter(Node):
 
         # TODO: (Lilo) modify particles using delta
 
+        for p in self.particle_cloud:
+            p.x += delta[0]
+            p.y += delta[1]
+            p.theta += delta[2]
+
+
     def resample_particles(self):
         """ Resample the particles according to the new particle weights.
             The weights stored with each particle should define the probability that a particular
@@ -251,8 +257,15 @@ class ParticleFilter(Node):
 
     def normalize_particles(self):
         """ Make sure the particle weights define a valid distribution (i.e. sum to 1.0) """
-        # TODO: implement this
-        pass
+        # TODO: implement this (Lilo did)
+        # pass
+
+        sum_weights = 0
+        for p in self.particle_cloud:
+            sum_weights += p.w
+
+        for p in self.particle_cloud:
+            p.w /= sum_weights
 
     def publish_particles(self, timestamp):
         particles_conv = []
