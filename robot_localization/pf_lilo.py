@@ -226,6 +226,10 @@ class ParticleFilter(Node):
         self.normalize_particles()
         # TODO: fill out the rest of the implementation
 
+        # Lilo: got started a bit
+        samples = draw_random_sample(self.particle_cloud, [p.w for p in self.particle_cloud], length(self.particle_cloud))
+        # TODO: fix this code to update particle cloud to use `samples` and move particles to focus on areas of high density
+
     def update_particles_with_laser(self, r, theta):
         """ Updates the particle weights in response to the scan data
             r: the distance readings to obstacles
@@ -251,6 +255,9 @@ class ParticleFilter(Node):
             xy_theta = self.transform_helper.convert_pose_to_xy_and_theta(self.odom_pose)
         self.particle_cloud = []
         # TODO create particles
+        #  Lilo: got started a bit 
+        #  Paul mentioned use something like np.normal() but in 2D space? 
+        #  then center the normal distribution on xy_theta and scale it by our uncertainty
 
         self.normalize_particles()
         self.update_robot_pose()
