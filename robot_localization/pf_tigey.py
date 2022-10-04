@@ -257,8 +257,6 @@ class ParticleFilter(Node):
 
 
         # TODO: (Tigey) implement this
-        pass
-
     @staticmethod
 
     def update_initial_pose(self, msg):
