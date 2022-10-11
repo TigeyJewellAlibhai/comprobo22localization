@@ -82,8 +82,8 @@ class ParticleFilter(Node):
 
         self.start_scale = 0.05           # starting distribution scale
 
-        self.d_thresh = 0.2             # the amount of linear movement before performing an update
-        self.a_thresh = math.pi/6       # the amount of angular movement before performing an update
+        self.d_thresh = 0.1             # the amount of linear movement before performing an update
+        self.a_thresh = math.pi/12       # the amount of angular movement before performing an update
 
         # TODO: define additional constants if needed
 
@@ -192,17 +192,26 @@ class ParticleFilter(Node):
         # first make sure that the particle weights are normalized
         self.normalize_particles()
 
-        x_mode = float(stats.mode([particle.x for particle in self.particle_cloud])[0])
-        y_mode = float(stats.mode([particle.y for particle in self.particle_cloud])[0])
-        theta_mode = float(stats.mode([particle.theta for particle in self.particle_cloud])[0])
+        #x_mode = float(stats.mode([particle.x for particle in self.particle_cloud])[0])
+        #y_mode = float(stats.mode([particle.y for particle in self.particle_cloud])[0])
+        #theta_mode = float(stats.mode([particle.theta for particle in self.particle_cloud])[0])
+        x_mode = float(np.average([particle.x for particle in self.particle_cloud]))
+        y_mode = float(np.average([particle.y for particle in self.particle_cloud]))
+        theta_mode = float(np.average([particle.theta for particle in self.particle_cloud]))
+
+        mean_pose = Particle(x_mode, y_mode, theta_mode)
+        self.robot_pose = mean_pose.as_pose()
+
         print(x_mode, y_mode, theta_mode)
 
 
-        robot_pos = Point(x=x_mode, y=y_mode, z=0.0)
-        ang = quaternion_from_euler(0.0, 0.0, theta_mode)
-        robot_ang = Quaternion(x=ang[0], y=ang[1], z=ang[2], w=ang[3])
+        #robot_pos = Point(x=x_mode, y=y_mode, z=0.0)
+        #ang = quaternion_from_euler(0.0, 0.0, theta_mode)
+        #robot_ang = Quaternion(x=ang[0], y=ang[1], z=ang[2], w=ang[3])
         
-        self.robot_pose = Pose(position=robot_pos, orientation=robot_ang)
+        #self.robot_pose = Pose(position=robot_pos, orientation=robot_ang)
+
+        
 
         # (Tigey) assign the latest pose into self.robot_pose as a geometry_msgs.Pose object
         # just to get started we will fix the robot's pose to always be at the origin
@@ -236,6 +245,7 @@ class ParticleFilter(Node):
             p.x += delta[0]
             p.y += delta[1]
             p.theta += delta[2]
+            p.theta = (p.theta + (2*math.pi)) % (2*math.pi)
 
     def resample_particles(self):
         """ Resample the particles according to the new particle weights.
@@ -252,9 +262,10 @@ class ParticleFilter(Node):
         samples = draw_random_sample(self.particle_cloud, [p.w for p in self.particle_cloud], self.n_particles)
 
         for i in range(0, self.n_particles):
-            samples[i].x = float(np.random.normal(samples[i].x, 0.05, 1)) # 1/samples[i].w, 1))
-            samples[i].y = float(np.random.normal(samples[i].y, 0.05, 1)) #1/samples[i].w, 1))
-            samples[i].theta = float((np.random.normal(samples[i].theta, 0.5, 1) + 2*math.pi) % 2*math.pi)
+            samples[i].x = float(np.random.normal(samples[i].x, 0.1, 1)) # 1/samples[i].w, 1))
+            samples[i].y = float(np.random.normal(samples[i].y, 0.1, 1)) #1/samples[i].w, 1))
+            samples[i].theta = float((np.random.normal(samples[i].theta, 0.005, 1)))
+            #samples[i].theta = float(samples[i].theta)
             samples[i].w = 1.0
             self.particle_cloud[i] = samples[i]
         
@@ -269,13 +280,14 @@ class ParticleFilter(Node):
         for particle in self.particle_cloud:
             dist = []
             for i in range(0, len(r)):
-                x = particle.x + r[i] * math.cos(math.radians(theta[i] + particle.theta))
-                y = particle.y + r[i] * math.sin(math.radians(theta[i] + particle.theta))
-                d = self.occupancy_field.get_closest_obstacle_distance(x, y)
-                if d > 0.0001 and d < 1500:
-                    dist.append(d)
+                x = particle.x + r[i] * math.cos(theta[i] + particle.theta)
+                y = particle.y + r[i] * math.sin(theta[i] + particle.theta)
+                if abs(x) < 100 and abs(y) < 100:
+                    d = self.occupancy_field.get_closest_obstacle_distance(x, y)
+                    if d > 0.0001 and d < 1500:
+                        dist.append(d**2)
             if len(dist) > 0:
-                particle.w = float(1 / np.mean(dist))
+                particle.w = float((1 / np.mean(dist))**2)
             else:
                 particle.w = 0.0
 
@@ -307,9 +319,10 @@ class ParticleFilter(Node):
         
         
         for n in range(0, self.n_particles):
-            self.particle_cloud.append(Particle(float(x_positions[n]), float(y_positions[n]), float(thetas[n] + 2*math.pi) % 2*math.pi, 1.0))
+            #self.particle_cloud.append(Particle(float(x_positions[n]), float(y_positions[n]), float(thetas[n] + 2*math.pi) % 2*math.pi, 1.0))
+            self.particle_cloud.append(Particle(float(x_positions[n]), float(y_positions[n]), xy_theta[2]))
 
-        #self.normalize_particles()
+        self.normalize_particles()
         self.update_robot_pose()
 
     def normalize_particles(self):
