@@ -1,17 +1,19 @@
+Launch the Simulator
+```
+ros2 launch neato2_gazebo neato_gauntlet_world.py
+```
 
-Run particle filter:
-`
+Run Teleop
+```
+ros2 run teleop_twist_keyboard teleop_twist_keyboard
+```
+
+Launch rviz
+```
+rviz2
+```
+
+Run particle filter
+```
 ros2 launch robot_localization test_pf.py map_yaml:=maps/gauntlet.yaml
-`
-
-Run amcl:
-`
-ros2 launch robot_localization test_amcl.py map_yaml:=maps/gauntlet.yaml
-
-`
-
-Set Fixed Frame to Map
-Change particlecloud Reliabilty to Best Effort
-Change map Durability to Transient Local
-
-
+```
