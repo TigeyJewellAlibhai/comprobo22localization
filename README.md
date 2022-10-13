@@ -5,8 +5,10 @@ Lilo Heinrich and Tigey Jewell-Alibhai
 ### Goal
 Create a particle filter which uses a robot's lidar scan data to determine an estimate of the robot's pose and location on a given map. 
 
-### Testing
-We tested our particle filter using two methods: a gazebo simulation of a Neato robot driving around the Gauntlet world controlled using keyboard input, and bag files of the Turtlebot robot driving around the Academic Center 1st floor. We were provided maps for both settings.
+### Results
+We tested our particle filter using two methods: a gazebo simulation of a Neato robot driving around the Gauntlet world controlled using keyboard input, and bag files of the Turtlebot robot driving around the Academic Center 1st floor. We were provided maps for both.
+
+In the end our particle filter tracks the robot's position well in both test scenarios and we are satisfied with the result. The point cloud, although it is fairly spread out, stays centered on the robot's actual position. 
 - INSERT GIFS of PF in action
 
 ### Method 
@@ -16,7 +18,7 @@ The particle weights are updated by overlaying the scan data around each particl
 
 The particles are resampled according to their weights, where each particle's weight (after normalizing) defines the probability of that particle being selected. This prunes away the particles which have a lower weight and therefore a worse fit, keeping more instances of those particles which had a better fit. The sampled particles are then run through the same normal distribution code for initializing the particle cloud, but this time centered on each sampled particle's position. 
 
-Lastly, the robot's pose is computed from the particle cloud by taking the `average x, y, and theta value` of the particles. We also tried another method  where we computed the robot's pose as the most likely pose (the mode of the distribution), but the particle filter's behaviour was not as good becuase this tended to create bigger changes in pose from one calculation to the next, so the robot pose estimate jumped around more. The most likely pose also did not set the robot's pose as accurately, so we found the average to be more robust. 
+Lastly, the robot's pose is computed from the particle cloud by taking the `average x, y, and theta value` of the particles. We also tried another method  where we computed the robot's pose as the most likely pose (the mode of the distribution), but the particle filter's behaviour was not as good because this tends to create bigger changes in pose from one calculation to the next, so the robot pose estimate jumped around more. The most likely pose also didn't set the robot's pose as accurately, so we found the average to be more robust. 
 
 ### Challenges
 We faced a challenge when trying to update and visualize the robot's pose in rviz, where the robot and the scan data were not overlaying correctly over the map, even though the particle cloud was correctly following the robot's position on the map. The frame of the robot and scan data was rotating around the origin (0,0) rather than around the center of the particle cloud and there was a problem with the x- and y- scaling factor. We tried to debug this for over an hour and thought it was a problem with our robot pose code, but it turned out to be a bug which Paul fixed that we hadn't synced. It was frustrating because we thought we had caused this error and that we could fix it in the particle filter code, but it turned out to be a bug in the helper function for the map to odom frame transformation.
