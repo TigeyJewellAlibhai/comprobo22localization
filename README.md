@@ -23,7 +23,7 @@ We faced a challenge when trying to update and visualize the robot's pose in rvi
 
 ### Reflection
 Lilo:  
-The pieces of our project didn't come together until the rviz visualization error was fixed, so I learned that visualization is extremely important. Although rviz can be frustrating to learn to use and to configure correctly, it is an important and useful tool when working with large and constantly changing data such as lidar. I'm wondering what visualization tools we can use in the next project like perhaps annotating image data. 
+The pieces of our project didn't come together until the rviz visualization error was fixed, so I learned that visualization is extremely important. Although rviz can be frustrating to learn to use and to configure correctly, it is an important and useful tool when working with large and constantly changing data such as lidar. I'm wondering what visualization tools we can use in the next project, perhaps annotating image data. 
 
 Also, it was hard to test how one individual part of the particle filter is working without involving all of the other parts. In future projects like the Computer Vision project I will try give more consideration to modularity as we build up the code. 
 
