@@ -24,12 +24,14 @@ We faced a challenge when trying to update and visualize the robot's pose in rvi
 ### Reflection
 Did you learn any interesting lessons for future robotic programming projects? These could relate to working on robotics projects in teams, working on more open-ended (and longer term) problems, or any other relevant topic.
 
-I learned that visualization is extremely important. Although rviz can be frustrating to learn to use and to configure correctly, it is an important and very useful tool when working with large and constantly changing data such as lidar. 
+The pieces of our project didn't come together until the rviz visualization error was fixed, so I learned that visualization is extremely important. Although rviz can be frustrating to learn to use and to configure correctly, it is an important and very useful tool when working with large and constantly changing data such as lidar. I am wondering what visualization tools we can use in the next project like perhaps annotating image data. Also, it was hard to test how one individual part of the particle filter is working without involving all of the other parts. In future projects like the Computer Vision project I will try give more consideration to modularity as I build up the code, but this is also one of the inherent challenges of robotics that there are multiple pieces of software or hardware interacting to create some functionality. This project is one of my first projects working with a simulator, and I am learning to appreciate using gazebo to simulate robot before running the code on a real robot, but I have to say I still prefer when I am working with real, physical systems rather than just a simulator. Although simulators can allow me to focus more on the algorithms than integration, 
 
 If we had more time, I'd like to test our particle filter on a real Neato robot driving around the Academic Center, or try to make our particle filter work even without an initial pose estimate (although since the Academic Center has many self-similar areas, it may be difficult).
 
 
-    add pictures to your report, links to Youtube videos, embedded animated Gifs (these can be recorded with the tool peek).
+
+### Prompts
+    Add pictures to your report, links to Youtube videos, embedded animated Gifs (these can be recorded with the tool peek).
     *What was the goal of your project?
     *How did you solve the problem? (Note: this doesn’t have to be super-detailed, you should try to explain what you did at a high-level so that others in the class could reasonably understand what you did).
     *Describe a design decision you had to make when working on your project and what you ultimately did (and why)? These design decisions could be particular choices for how you implemented some part of an algorithm or perhaps a decision regarding which of two external packages to use in your project.
