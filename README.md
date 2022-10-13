@@ -3,7 +3,7 @@ Computational Robotics, Fall 2022
 Lilo Heinrich and Tigey Jewell-Alibhai  
 
 ### Goal
-Our goal was to create a particle filter which uses a robot's lidar scan data to determine an estimate of the robot's pose and location on a given map. 
+Create a particle filter which uses a robot's lidar scan data to determine an estimate of the robot's pose and location on a given map. 
 
 ### Method 
 We tested our particle filter using two methods: a gazebo simulation of a Neato robot driving around the Gauntlet world which we could control using keyboard input, and bag files of the Turtlebot robot driving around the Academic Center 1st floor. We were provided maps for both settings.
