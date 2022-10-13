@@ -6,7 +6,7 @@ Lilo Heinrich and Tigey Jewell-Alibhai
 Create a particle filter which uses a robot's lidar scan data to determine an estimate of the robot's pose and location on a given map. 
 
 ### Method 
-We tested our particle filter using two methods: a gazebo simulation of a Neato robot driving around the Gauntlet world which we could control using keyboard input, and bag files of the Turtlebot robot driving around the Academic Center 1st floor. We were provided maps for both settings.
+We tested our particle filter using two methods: a gazebo simulation of a Neato robot driving around the Gauntlet world controlled using keyboard input, and bag files of the Turtlebot robot driving around the Academic Center 1st floor. We were provided maps for both settings.
 
 To initialize the particle cloud, we used `np.random.normal()` to create normal (Gaussian) distributions of x, y, and theta centered around the initial pose estimate that we provide in rviz. We set the scale factor for the x- and y- distributions to be 0.1, and the scale factor of the theta distribution as 0.005. These values were found experimentally. The scale factor for a normal distribution is equal to its standard deviation. Initially, we had a higher scale value for theta but the particles' headings were not well related to the robot's actual heading, which caused a problem when trying to estimate and visualize the robot's pose from the particle cloud. With a theta scale of 0.005 the particle headings stay near parallel, which worked well for creating a robot pose estimate in our two test situations.
 
