@@ -16,7 +16,9 @@ The particles are resampled according to their weights, where each particle's we
 
 Lastly, the robot's pose is computed from the particle cloud by taking the average x, y, and theta value of the particles. We also tried another method  where we computed the robot's pose as the most likely pose (the mode of the distribution), but the particle filter's behaviour was not as good becuase this tended to create bigger changes in pose from one calculation to the next, so the robot pose estimate jumped around more. The most likely pose also did not set the robot's pose as accurately, so we found the average to be more robust. 
 
+We faced a challenge when trying to update and visualize the robot's pose in rviz, where the robot and the scan data were not overlaying correctly over the map, even though the particle cloud was correctly following the robot's position on the map. It seemed that the frame of the robot and scan data was rotating around the origin (0,0) rather than around the center of the particle cloud. It also seemed there was a problem with the x- and y- scaling factor. We tried to debug this for over an hour and thought it was a problem with our robot pose code, but it turned out to be caused by a bug which Paul fixed that we hadn't synced. It was frustrating because we thought we had done something to cause this error and that we could fix it in the particle filter coe, but it turned out to be a bug in the helper function that does the map to odom frame transformation.
 
+If we had more time, I'd like to test our particle filter on a real Neato robot driving around the Academic Center, or try to make our particle filter work even without an initial pose estimate (although since the Academic Center has many self-similar areas, it may be difficult).
 
 
     add pictures to your report, links to Youtube videos, embedded animated Gifs (these can be recorded with the tool peek).
