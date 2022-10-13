@@ -1,7 +1,6 @@
 # Robot Localization using a Particle Filter
 Computational Robotics, Fall 2022 
-
-Lilo Heinrich and Tigey Jewell-Alibhai
+Lilo Heinrich and Tigey Jewell-Alibhai 
 
 ### Goal
 Our goal was to create a particle filter which uses a robot's lidar scan data to determine an estimate of the robot's pose and location on a given map. 
