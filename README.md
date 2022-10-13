@@ -31,7 +31,7 @@ The pieces of our project didn't come together until the rviz visualization erro
 
 This project is one of my first projects working with mainly simulations and bag files, and I am learning to appreciate being able to run simulations before running on a real robot. But I still prefer when what I am working on connects back to a real, physical system rather than just a simulator. Although simulators can allow us to focus more on the algorithms than integration, I also enjoy integration and the challenge of making something work in the real-world as well as having a demo to show. That is why I am hoping to work with a real drone in the Computer Vision project.
 
-If we had more time, I'd like to test our particle filter on a real Neato robot driving around the Academic Center. Another thing I'd have liked to do more of is working on tuning our distribution scaling, particle weights, and pose computation to optimize the performance of the Particle Filter. 
+If we had more time, I'd like to test our particle filter on a real Neato robot driving around the Academic Center. Another thing I'd have liked to do more of is working on tuning our distribution scaling, particle weights, and pose computation method to optimize the performance of the Particle Filter. 
 
 
 
