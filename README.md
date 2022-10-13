@@ -12,7 +12,7 @@ In the end our particle filter tracks the robot's position well in both test sce
 - INSERT GIFS of PF in action
 
 ### Method 
-To initialize the particle cloud, we used `np.random.normal()` to create normal (Gaussian) distributions of x, y, and theta centered around the initial pose estimate that we provide in rviz. We set the scale factor (aka the standard deviation) for the `x- and y- distributions as 0.1`, and the scale factor of the `theta distribution as 0.005`. These values were found experimentally. 
+To initialize the particle cloud, we used `np.random.normal()` to create normal (Gaussian) distributions of x, y, and theta centered around the initial pose estimate that we provide in rviz. We set the scale factor (aka the standard deviation) for the `x- and y- distributions as 0.1`, and the scale factor of the `theta distribution as 0.005`. These values were found experimentally.
 <!-- The scale factor for a normal distribution is equal to its standard deviation.  -->
 Initially we had a higher scale value for theta but the particles' headings were not well related to the robot's actual heading, which caused a problem when trying to estimate and visualize the robot's pose from the particle cloud. With a theta scale of 0.005 the particle headings stay near parallel, which worked well for creating a robot pose estimate in our two test situations.
 
