@@ -9,7 +9,8 @@ Create a particle filter which uses a robot's lidar scan data to determine an es
 We tested our particle filter using two methods: a gazebo simulation of a Neato robot driving around the Gauntlet world controlled using keyboard input, and bag files of the Turtlebot robot driving around the Academic Center 1st floor. We were provided maps for both.
 
 In the end our particle filter tracks the robot's position well in both test scenarios and we are satisfied with the result. The point cloud, although it is somewhat spread out, stays centered on the robot's actual position. 
-- INSERT GIFS of PF in action
+![PF2](https://user-images.githubusercontent.com/29106192/195743695-44183f7d-efc2-4276-8fea-d3ee0241bc8f.gif)
+
 
 ### Method 
 To initialize the particle cloud, we used `np.random.normal()` to create normal (Gaussian) distributions of x, y, and theta centered around the initial pose estimate that we provide in rviz. We set the scale factor (aka the standard deviation) for the `x and y distributions as 0.1`, and the scale factor of the `theta distribution as 0.005`. These values were found experimentally. <!-- The scale factor for a normal distribution is equal to its standard deviation.  --> Initially we had a higher scale value for theta but the particles' headings were not well related to the robot's actual heading, which caused a problem when trying to estimate and visualize the robot's pose from the particle cloud. With a theta scale of 0.005 the particle headings stay near parallel, which worked well for creating a robot pose estimate in our two test situations.
