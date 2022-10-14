@@ -8,7 +8,7 @@ Create a particle filter which uses a robot's lidar scan data to determine an es
 ### Results
 We tested our particle filter using two methods: a gazebo simulation of a Neato robot driving around the Gauntlet world controlled using keyboard input, and bag files of the Turtlebot robot driving around the Academic Center 1st floor. We were provided maps for both.
 
-In the end our particle filter tracks the robot's position well in both test scenarios and we are satisfied with the result. The point cloud, although it is fairly spread out, stays centered on the robot's actual position. 
+In the end our particle filter tracks the robot's position well in both test scenarios and we are satisfied with the result. The point cloud, although it is somewhat spread out, stays centered on the robot's actual position. 
 - INSERT GIFS of PF in action
 
 ### Method 
