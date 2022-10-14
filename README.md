@@ -26,7 +26,6 @@ Lastly, the robot's pose is computed from the particle cloud by taking the `aver
 We faced a challenge when trying to update and visualize the robot's pose in rviz, where the robot and the scan data were not overlaying correctly over the map, even though the particle cloud was correctly following the robot's position on the map. The frame of the robot and scan data was rotating around the origin (0,0) rather than around the center of the particle cloud and there was a problem with the x- and y- scaling factor. We tried to debug this for over an hour and thought it was a problem with our robot pose code, but it turned out to be a bug which Paul fixed that we hadn't synced. It was frustrating because we thought we had caused this error and that we could fix it in the particle filter code, but it turned out to be a bug in the helper function for the map to odom frame transformation.
 
 ### Reflection
-Lilo:  
 The pieces of our project didn't come together until the rviz visualization error was fixed, so I learned that visualization is extremely important. Although rviz can be frustrating to learn to use and to configure correctly, it is an important and useful tool when working with large and constantly changing data such as lidar. I'm wondering what visualization tools we can use in the next project, perhaps annotating image data. 
 
 This project is one of my first projects working with mainly simulations and bag files, and I am learning to appreciate being able to run simulations before running on a real robot. But I still prefer when what I am working on connects back to a real, physical system rather than just a simulator. Although simulators can allow us to focus more on the algorithms than integration, I also enjoy integration and the challenge of making something work in the real-world as well as having a demo to show. That is why I am hoping to work with a real drone in the Computer Vision project.
@@ -35,11 +34,11 @@ If we had more time, I'd like to test our particle filter on a real Neato robot 
 
 
 
-### Prompts
+<!-- ### Prompts
     Add pictures to your report, links to Youtube videos, embedded animated Gifs (these can be recorded with the tool peek).
     *What was the goal of your project?
     *How did you solve the problem? (Note: this doesn’t have to be super-detailed, you should try to explain what you did at a high-level so that others in the class could reasonably understand what you did).
     *Describe a design decision you had to make when working on your project and what you ultimately did (and why)? These design decisions could be particular choices for how you implemented some part of an algorithm or perhaps a decision regarding which of two external packages to use in your project.
     *What if any challenges did you face along the way?
     *What would you do to improve your project if you had more time?
-    Did you learn any interesting lessons for future robotic programming projects? These could relate to working on robotics projects in teams, working on more open-ended (and longer term) problems, or any other relevant topic.
+    Did you learn any interesting lessons for future robotic programming projects? These could relate to working on robotics projects in teams, working on more open-ended (and longer term) problems, or any other relevant topic. -->
