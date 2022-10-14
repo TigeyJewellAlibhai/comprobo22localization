@@ -21,9 +21,11 @@ The particles are resampled according to their weights, where each particle's we
 Lastly, the robot's pose is computed from the particle cloud by taking the `average x, y, and theta value` of the particles. We also tried setting the robot's pose as the most likely pose (the mode of the distribution), but the particle filter's behaviour was not as good because this tends to create bigger changes in pose from one calculation to the next, so the robot pose estimate jumped around more. The most likely pose also didn't set the robot's pose as accurately, so we found the average to be more robust. 
 
 Best Particle:
+
 ![BestParticle](https://user-images.githubusercontent.com/29106192/195740016-1f1438e9-e751-47a6-825d-a4ba81033bb3.gif)
 
 Average Particle:
+
 ![AverageParticle](https://user-images.githubusercontent.com/29106192/195740059-990b18ad-2a55-464b-9846-c9edc3c44420.gif)
 
 
