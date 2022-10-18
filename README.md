@@ -36,13 +36,12 @@ Average Particle:
 We faced a challenge when trying to update and visualize the robot's pose in rviz, where the robot and the scan data were not overlaying correctly over the map, even though the particle cloud was correctly following the robot's position on the map. The frame of the robot and scan data was rotating around the origin (0,0) rather than around the center of the particle cloud and there was a problem with the x- and y- scaling factor. We thought it was a problem with our robot pose code, but it turned out to be a bug in the helper function for the map to odom frame transformation which we hadn't synced the update to fix it.
 
 ### Reflection
-The pieces of our project didn't come together until the rviz visualization error was fixed, so I learned that visualization is extremely important. Although rviz can be frustrating to learn to use and to configure correctly, it is an important and useful tool when working with large and constantly changing data such as lidar. I'm wondering what visualization tools we can use in the next project, perhaps annotating image data. 
+The pieces of our project didn't come together until the rviz visualization error was fixed, so we learned that visualization is extremely important. Although rviz can be frustrating to learn to use and to configure correctly, it is an important and useful tool when working with large and constantly changing data such as lidar. 
 
-This project is one of my first projects working with mainly simulations and bag files, and I am learning to appreciate being able to run simulations before running on a real robot. But I still prefer when what I am working on connects back to a real, physical system rather than just a simulator. Although simulators can allow us to focus more on the algorithms than integration, I also enjoy integration and the challenge of making something work in the real-world as well as having a demo to show. That's why I am hoping to work with a real drone in the Computer Vision project.
+Lilo:
+This project is one of my first projects working with mainly simulations and bag files. I'm learning to appreciate being able to run simulations before running on a real robot. But I still prefer when projects connect back to real, physical systems rather than a simulator. Although simulators can allow us to focus more on the algorithms than integration, I also enjoy integration and the challenge of making something work in the real-world and having a demo to show. I am hoping to work with a drone in the Computer Vision project.
 
-If we had more time, I'd like to test our particle filter on a real Neato robot driving around the Academic Center. I'd also have liked to spend more time on tuning our distribution scaling, particle weights, and pose computation method to try to improve the performance of the Particle Filter further. 
-
-
+If we had more time, I'd like to test our particle filter on a real Neato robot driving around the Academic Center and to spend more time on tuning our distribution scaling, particle weights, and pose computation method to try to improve the performance of the Particle Filter further. 
 
 <!-- ### Prompts
     Add pictures to your report, links to Youtube videos, embedded animated Gifs (these can be recorded with the tool peek).
